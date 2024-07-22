@@ -1,73 +1,69 @@
 ### Home-Detection-Lab 
 
-#### Introduction
-Building a home detection lab is an excellent way to gain practical experience in cybersecurity. This project involves setting up a virtual environment with a Windows 10 machine and a Kali Linux machine, installing and configuring necessary tools like Splunk and Sysmon on the Windows machine, and conducting simulated attacks to detect malware activity. This setup helps in understanding how to generate and analyze telemetry data to detect malicious activities on a target system.
+### Introduction
 
-#### Objectives
-1. **Setup Virtual Environment:** Install and configure VirtualBox to create isolated virtual machines.
-2. **Install and Configure Windows 10:** Set up Windows 10 as the target machine with Splunk and Sysmon.
-3. **Install and Configure Kali Linux:** Set up Kali Linux as the attacker machine.
-4. **Simulate Attacks:** Use Kali Linux to scan and attack the Windows 10 machine.
-5. **Detect and Analyze Malware:** Monitor and detect malicious activities on Windows 10 using Splunk.
+This project outlines the creation of a basic home detection lab for cybersecurity training. The lab setup involves installing VirtualBox to create virtual machines, configuring a Windows 10 machine with Splunk and Sysmon for monitoring, and setting up a Kali Linux machine as an attacker. By simulating attacks and monitoring telemetry data, the lab provides hands-on experience in detecting and analyzing malicious activities using Splunk.
 
-#### Skills Learned
-- Setting up and managing virtual machines using VirtualBox.
-- Installing and configuring Windows 10 and Kali Linux.
-- Installing and configuring Splunk and Sysmon for security monitoring.
-- Performing network scans and simulating attacks using Nmap and custom malware.
-- Analyzing telemetry data to detect and respond to security threats.
+### Objectives
 
-#### Tools Used
-- **VirtualBox:** For creating and managing virtual machines.
-- **Windows 10:** As the target machine.
-- **Kali Linux:** As the attacker machine.
-- **Splunk:** For collecting and analyzing security data.
-- **Sysmon:** For enhanced logging and monitoring on Windows.
-- **Nmap:** For network scanning and reconnaissance.
-- **Custom Malware:** For simulating a real-world attack.
+1. **Set Up Virtual Environment:** Install VirtualBox and create virtual machines for Windows 10 and Kali Linux.
+2. **Configure Network:** Ensure secure communication between virtual machines using an internal network.
+3. **Simulate Attacks:** Use Kali Linux to conduct network scans and deploy custom malware on the Windows 10 machine.
+4. **Monitor and Detect:** Utilize Splunk and Sysmon on the Windows 10 machine to detect and analyze malicious activities.
+5. **Enhance Skills:** Develop practical skills in setting up and managing virtual labs, using cybersecurity tools, and performing threat detection.
 
-#### Steps Taken
+### Skills Learned
+
+- Setting up and configuring virtual machines using VirtualBox.
+- Installing and configuring Windows 10 and Kali Linux for cybersecurity purposes.
+- Using Splunk and Sysmon for monitoring and detecting malicious activities.
+- Creating and deploying custom malware using MSFvenom and Metasploit.
+- Conducting network scans and exploiting vulnerabilities with Nmap and Metasploit.
+
+### Tools Used
+
+- **VirtualBox:** Virtualization software to create and manage virtual machines.
+- **Windows 10:** Operating system for the target machine.
+- **Kali Linux:** Operating system for the attacker machine.
+- **Splunk:** Security information and event management (SIEM) tool for monitoring and analyzing telemetry data.
+- **Sysmon:** Windows system service for logging system events.
+- **Nmap:** Network scanning tool for discovering open ports.
+- **MSFvenom and Metasploit:** Tools for creating and deploying custom malware.
+
+### Steps Taken
 
 1. **Install VirtualBox:**
-   - Download and install VirtualBox from the official website.
-   - Ensure VirtualBox is up to date.
+   - Download and install VirtualBox on the host machine.
+   - Create a new virtual machine for Windows 10 and another for Kali Linux.
 
-2. **Create Virtual Machines:**
-   - **Windows 10 VM:** Install Windows 10 as a virtual machine.
-     - Allocate sufficient resources (RAM, CPU, storage).
-   - **Kali Linux VM:** Install Kali Linux as a virtual machine.
-     - Allocate sufficient resources and configure networking.
+2. **Install Windows 10:**
+   - Install Windows 10 on the first virtual machine.
+   - Install Splunk and configure it for monitoring.
+   - Install Sysmon to log system events and send data to Splunk.
 
-3. **Configure Networking:**
-   - Set both virtual machines to use a Host-Only Adapter to ensure they can communicate without affecting the host machine.
-   - Verify network connectivity between Windows 10 and Kali Linux.
+3. **Install Kali Linux:**
+   - Install Kali Linux on the second virtual machine.
+   - Configure both virtual machines to use an internal network to ensure secure communication.
 
-4. **Install Windows 10:**
-   - Complete the installation process and disable Windows Defender to avoid interference.
-   - Update Windows 10 to the latest version.
+4. **Network Configuration:**
+   - Ensure that the internal network setup prevents any potential infection of the host machine.
+   - Verify that Windows 10 and Kali Linux can communicate with each other over the internal network.
 
-5. **Install Splunk on Windows 10:**
-   - Download and install Splunk from the official website.
-   - Configure Splunk to start on boot and set up basic logging.
+5. **Conduct Network Scan:**
+   - Use Nmap from Kali Linux to scan the Windows 10 machine and discover open ports.
+   - After the scan, it was discovered that port 3389 (Remote Desktop Protocol) is open on Windows 10.
 
-6. **Install Sysmon on Windows 10:**
-   - Download Sysmon from the Sysinternals website.
-   - Install Sysmon with a configuration file to enable detailed logging of system events.
+6. **Disable Windows Defender:**
+   - Temporarily disable Windows Defender on the Windows 10 machine to allow malware execution.
 
-7. **Install Kali Linux:**
-   - Complete the installation process and update Kali Linux. 
+7. **Create and Deploy Malware:**
+   - Use MSFvenom to create custom malware with the payload `windows/x64/meterpreter_reverse_tcp`.
+   - Start Metasploit's msfconsole on Kali Linux and set up the multi/handler to receive the reverse TCP connection.
 
-8. **Simulate Attacks:**
-   - Use Nmap from Kali Linux to scan the Windows 10 machine for open ports. Port 3389 was discovered opened on my Windows 10 machine
-   - Developed a custom malware executable and ran it on the Windows 10 machine.
+8. **Simulate Attack:**
+   - Execute the malware on the Windows 10 machine.
+   - Monitor and detect the malware execution in Splunk using the telemetry data provided by Sysmon.
 
-9. **Monitor and Detect:**
-   - Use Splunk on Windows 10 to collect and analyze logs generated by Sysmon.
-   - Look for indicators of the Nmap scan and malware execution in the Splunk logs.
+### Conclusion
 
-10. **Analyze Results:**
-    - Identify key telemetry data indicating the presence of an attack.
-    - Document the findings and understand how Splunk and Sysmon can be used to detect such activities.
-
-#### Conclusion
-This home detection lab project provides hands-on experience in setting up a secure virtual environment, simulating cyber attacks, and detecting malicious activities using Splunk and Sysmon. By following these steps, one gains a deeper understanding of how to monitor, analyze, and respond to security threats effectively. This foundational knowledge is essential for aspiring cybersecurity professionals to develop robust security monitoring and incident response capabilities.
+By setting up a basic home detection lab, this project provides a comprehensive hands-on experience in configuring virtual environments, simulating cyber attacks, and detecting malicious activities. The integration of Splunk and Sysmon on a Windows 10 machine allows for effective monitoring and analysis, while the use of Kali Linux as an attacker machine facilitates realistic attack simulations. This lab setup not only enhances practical cybersecurity skills but also underscores the importance of continuous monitoring and proactive threat detection in securing digital environments.
